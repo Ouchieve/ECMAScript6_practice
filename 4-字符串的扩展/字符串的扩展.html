@@ -6,8 +6,29 @@
 </head>
 <body>
 <script>
+    let sender1='<b>我是粗体字</b>';
+    let sender2='<i>我是粗体字</i>';
+    var message =
+            SaferHTML`<p>${sender1} ${sender2} has sent you a message.</p>`;
+    document.write(message);
+    function SaferHTML(templateData,...value) {
+        console.log('templateData:',templateData);
+        console.log('arguments:',arguments);
+        console.log('value:',value);
+        var s = templateData[0];
+        for (var i = 1; i < arguments.length; i++) {
+            var arg = String(arguments[i]);
 
-    console.log('abc'.padStart(10, '0123456789'));
+            // Escape special characters in the substitution.
+            s += arg.replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
+
+            // Don't escape special characters in the template.
+            s += templateData[i];
+        }
+        return s;
+    }
 </script>
 </body>
 </html>

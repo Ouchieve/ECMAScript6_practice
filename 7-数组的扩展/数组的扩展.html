@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组的扩展</title>
+</head>
+<body>
+<script>
+    var arr = [1, 5, 10, 15];
+    var arr2=[2,3,4];
+    var tar=arr.find(iterator,arr2);
+    function iterator(value, index, arr){
+        console.log(this);
+        return value>9;
+    }
+    console.log(arr2.indexOf(4))
+
+</script>
+</body>
+</html>

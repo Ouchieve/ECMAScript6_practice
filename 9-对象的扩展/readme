@@ -1,0 +1,33 @@
+关键词：
+
+属性的简洁表示法
+
+除了属性简写，方法也可以简写。
+
+属性的赋值器（setter）和取值器（getter）
+    var cart = {
+      _wheels: 4,
+      get wheels () {
+        return this._wheels;
+      },
+      set wheels (value) {
+        this._wheels = value;
+      }
+    }
+    cart.wheels//4
+
+属性名表达式与简洁表示法，不能同时使用，会报错
+
+Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
+同名属性,后面的属性会覆盖前面的属性
+除了字符串会以数组形式，拷贝入目标对象，其他值都不会产生效果
+Object.assign拷贝的属性是有限制的，只拷贝源对象的自身属性（不拷贝继承属性），也不拷贝不可枚举的属性（enumerable: false）。
+属性名为Symbol值的属性，也会被Object.assign拷贝。
+
+Object.assign方法有很多用处:
+    1.为对象添加属性Object.assign(obj, {x, y});
+    2.为对象添加方法
+    3.克隆对象,这种方式克隆只克隆一层并且不能克隆它继承的值
+    4.合并多个对象
+
+ES6规定，所有Class的原型的方法都是不可枚举的。
