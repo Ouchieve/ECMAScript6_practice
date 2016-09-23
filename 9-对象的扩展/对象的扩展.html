@@ -6,7 +6,11 @@
 </head>
 <body>
 <script>
-//  todo 读到这里了  9.Object.values()，Object.entries()
+    const obj = {
+        foo: 123,
+        get bar() { return 'abc' }
+    };
+    console.log(Object.getOwnPropertyDescriptors(obj));
 </script>
 </body>
 </html>

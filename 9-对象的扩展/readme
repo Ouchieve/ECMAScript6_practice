@@ -31,3 +31,5 @@ Object.assign方法有很多用处:
     4.合并多个对象
 
 ES6规定，所有Class的原型的方法都是不可枚举的。
+
+!!!getOwnPropertyDescriptors chrome53貌似还不支持，因此没有实验

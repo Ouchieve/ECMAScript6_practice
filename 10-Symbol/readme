@@ -1,0 +1,43 @@
+关键词：
+
+保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是ES6引入Symbol的原因
+
+ES6有七种数据类型，前六种是：Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）、Symbol。
+
+Symbol函数前不能使用new命令，否则会报错。
+
+Symbol值可以显式转为字符串。Symbol值也可以转为布尔值，但是不能转为数值。
+
+魔术字符串指的是，在代码之中多次出现、与代码形成强耦合的某一个具体的字符串或者数值
+
+常用的消除魔术字符串的方法，就是把它写成一个变量
+
+Object.getOwnPropertySymbols方法，可以获取指定对象的所有Symbol属性名。返回一个数组，成员是当前对象的所有用作属性名的Symbol值。
+
+Symbol.for()搜索有没有以该参数作为名称的Symbol值。如果有，就返回这个Symbol值，否则就新建并返回一个以该字符串为名称的Symbol值
+
+Symbol.for()与Symbol()这两种写法，都会生成新的Symbol。它们的区别是，前者会被登记在全局环境中供搜索，后者不会
+
+Symbol.keyFor方法返回一个“已登记”的Symbol类型值的key。
+
+实例：模块的 Singleton 模式:Singleton模式指的是调用一个类，任何时候返回的都是同一个实例
+    const FOO_KEY = Symbol.for('foo');
+    function A() {
+      this.foo = 'hello';
+    }
+    if (!global[FOO_KEY]) {
+      global[FOO_KEY] = new A();
+    }
+    module.exports = global[FOO_KEY];
+    上面代码中，可以保证global[FOO_KEY]不会被其他脚本改写
+
+Symbol.hasInstance属性，指向一个内部方法。当其他对象使用instanceof运算符，判断是否为该对象的实例时，会调用这个方法。
+个人理解为类似于一个勾子函数
+
+对象的Symbol.isConcatSpreadable属性等于一个布尔值，表示该对象使用Array.prototype.concat()时，是否可以展开。
+Symbol.isConcatSpreadable属性等于true或undefined，都有标识能展开
+类似数组的对象也可以展开，但它的Symbol.isConcatSpreadable属性默认为false，必须手动打开。
+对于一个类来说，Symbol.isConcatSpreadable属性必须写成实例的属性。this[Symbol.isConcatSpreadable] = true;
+
+！！！！不懂，Symbol.species属性，指向一个方法。该对象作为构造函数创造实例时，会调用这个方法。
+！！！！还有更多关于Symbol的属性，需要在逐步使用中才能体会到其作用，暂时还不能深透地理解

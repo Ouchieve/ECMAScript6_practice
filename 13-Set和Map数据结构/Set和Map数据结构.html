@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol</title>
+</head>
+<body>
+<div id="id"></div>
+<script>
+    var wm = new WeakMap();
+    var element = document.querySelector("#id");
+
+    wm.set(element, "Original");
+    t1=wm.get(element); // "Original"
+
+    element.parentNode.removeChild(element);
+//    element = null;
+    t2=wm.get(element); // undefined
+
+    console.log(t1,t2,)
+</script>
+</body>
+</html>
