@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol</title>
+</head>
+<body>
+<div id="id"></div>
+<script>
+    function* helloWorldGenerator() {
+        yield console.log('hello');
+        yield console.log('world');
+        return 'ending';
+    }
+
+    var hw = helloWorldGenerator();
+    hw.next();
+    // { value: 'hello', done: false }
+
+    hw.next();
+    // { value: 'world', done: false }
+
+    hw.next();
+    // { value: 'ending', done: true }
+
+    hw.next();
+    // { value: undefined, done: true }
+</script>
+</body>
+</html>
