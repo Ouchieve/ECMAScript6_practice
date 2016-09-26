@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol</title>
+</head>
+<body>
+<!--<button onclick="goOn()">继续</button>
+<button onclick="reset()">中断</button>-->
+<script>
+    function readFile(path) {
+        var yes = {val: 'yes'};
+        var no = {val: 'no'};
+        return new Promise(resolver);
+        function resolver(resolve, reject) {
+            setTimeout(function () {
+                path=='file://c:/window/readme.md'? resolve('I am readme text') : reject('file is not found!');
+            })
+        }
+    }
+    var gen = function* (){
+        var f1 = yield readFile('/etc/fstab');
+        var f2 = yield readFile('/etc/shells');
+        console.log(f1.toString());
+        console.log(f2.toString());
+    };
+    var g = gen();
+    g.next().value.then(function(data){
+        g.next(data).value.then(function(data){
+            g.next(data);
+        });
+    });
+</script>
+</body>
+</html>
